@@ -1,0 +1,62 @@
+<mat-toolbar style="background: transparent; height: 5rem !important;">
+  <div class="flex-container space">
+    <img style="height: 5rem" src="assets/logo.png" />
+    <mat-icon class="button-icon">
+      filter_list
+    </mat-icon>
+  </div>
+</mat-toolbar>
+<div class="pill-container">
+  <mat-chip-list>
+    <mat-chip *ngFor="let filter of filterList" [ngClass]="{'select': filter.selected}" (click)="filter.selected = !filter.selected">{{ filter.name }}</mat-chip>
+  </mat-chip-list>
+</div>
+
+<ng-container>
+  <div class="scores flex-container">
+    <mat-card
+      class="card"
+      *ngFor="let liveScore of filter(liveScores) | slice: 0:sliceNumber"
+      [hidden]="liveScore.status.statusInfo === 'Live'"
+    >
+      <mat-card-title class="truncate">{{
+        getLeagueName(liveScore.league.name)
+      }}</mat-card-title>
+      <div class="flex-card">
+        <div style="flex: 1">
+          <img src="{{ liveScore.teamOne.logo }}" />
+          <p>{{ liveScore.teamOne.name }}</p>
+        </div>
+        <div style="flex: 2">
+          <h1 *ngIf="liveScore.status.statusInfo !== 'Scheduled'">
+            {{ liveScore.teamOne.score + " - " + liveScore.teamTwo.score }}
+          </h1>
+          <h1 *ngIf="liveScore.status.statusInfo === 'Scheduled'">
+            {{ getScheduledTime(liveScore.status.whistleTime) }}
+          </h1>
+          <div [ngSwitch]="liveScore.status.statusInfo">
+            <div *ngSwitchCase="'Live'">
+              <p
+                class="half-time"
+                *ngIf="liveScore.status.status === 'HT'; else time"
+              >
+                Half Time
+              </p>
+              <ng-template #time>
+                <h4 class="time">
+                  {{ liveScore.status.time }}
+                </h4>
+              </ng-template>
+            </div>
+            <div *ngSwitchCase="'Ended'">Full Time</div>
+            <div *ngSwitchDefault></div>
+          </div>
+        </div>
+        <div style="flex: 1">
+          <img src="{{ liveScore.teamTwo.logo }}" />
+          <p>{{ liveScore.teamTwo.name }}</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</ng-container>

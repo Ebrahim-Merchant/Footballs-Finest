@@ -1,0 +1,97 @@
+:host {
+
+  @media(min-width: 800px) {
+    .flex-container {
+      display: flex;
+      align-content: center;
+      align-items: center;
+
+      &.space {
+        justify-content: space-between;
+      }
+
+      margin-right: auto;
+      margin-left: auto;
+      flex-wrap: wrap;
+      width: 80%
+    }
+
+  }
+
+  .pill-container {
+    padding-top: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    flex-wrap: wrap;
+    width: 80%
+  }
+
+  .half-time {
+    color: rgb(238, 147, 11);
+
+  }
+
+  .time {
+    color: rgba(206, 2, 2, 0.836);
+    animation: blinker 2s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .button-icon {
+    color: white;
+
+    &:hover {
+      background: grey;
+    }
+  }
+
+  .scores {
+    padding-top: 2rem;
+  }
+
+  .flex-card {
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .select{
+    color: white;
+    background: rgba(2, 1, 1, 0.589);
+}
+  .md-chip {
+    display: inline-block;
+    background: grey;
+    padding: 0 12px;
+    border-radius: 32px;
+    font-size: 13px;
+
+    &.md-chip-hover:hover {
+      background: #ccc;
+    }
+  }
+
+  ul{
+    list-style-type: none;
+  }
+
+  .card {
+    margin: 0.5rem;
+    width: 325px;
+    max-width: 325px;
+    height: 225px;
+    max-height: 225px;
+    text-align: center;
+  }
+}
