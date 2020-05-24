@@ -1,0 +1,11 @@
+<mat-list role="list">
+  <mat-list-item>
+    <div class="heading">{{ heading }}</div>
+  </mat-list-item>
+  <app-line-up-player-item
+    *ngFor="let player of players"
+    [playerName]="player.name"
+    [playerPosition]="player.position"
+    [playerNumber]="player.positionNumber">
+  </app-line-up-player-item>
+</mat-list>

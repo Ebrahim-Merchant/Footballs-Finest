@@ -1,29 +1,40 @@
 :host {
 
-  @media(min-width: 800px) {
-    .flex-container {
-      display: flex;
-      align-content: center;
-      align-items: center;
+  ::ng-deep.mat-form-field-label {
+    /*change color of label*/
+    color: white !important;
+   }
 
-      &.space {
-        justify-content: space-between;
-      }
+   ::ng-deep.mat-input-element {
+    /*change color of label*/
+    color: white !important;
+   }
 
-      margin-right: auto;
-      margin-left: auto;
-      flex-wrap: wrap;
-      width: 80%
-    }
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: white !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: white !important;;
+  }
 
+  .search-container{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .pill-container {
+    & .close{
+      padding-left: 10px;
+    }
     padding-top: 2rem;
     margin-right: auto;
     margin-left: auto;
     flex-wrap: wrap;
-    width: 80%
+    width: 90%
   }
 
   .half-time {
@@ -55,7 +66,8 @@
   }
 
   .flex-card {
-    display: flex;
+    grid-template-columns: auto auto auto;
+    display: grid;
     text-align: center;
     align-items: center;
   }
@@ -75,6 +87,7 @@
     background: grey;
     padding: 0 12px;
     border-radius: 32px;
+    text-transform: capitalize;
     font-size: 13px;
 
     &.md-chip-hover:hover {
@@ -86,12 +99,5 @@
     list-style-type: none;
   }
 
-  .card {
-    margin: 0.5rem;
-    width: 325px;
-    max-width: 325px;
-    height: 225px;
-    max-height: 225px;
-    text-align: center;
-  }
+
 }
