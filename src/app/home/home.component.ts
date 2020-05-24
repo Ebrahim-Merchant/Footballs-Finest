@@ -83,7 +83,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-   console.log('on init');
    this.liveScoresService.competitions.subscribe(competition => this.competitions = competition);
    this.liveScores = this.store.select(getGamesState)
     .pipe(tap(resp => resp ? this.lenght = resp.length : null));
@@ -106,17 +105,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         return competitionList;
     }));
 
-   this.leagueInput.valueChanges.pipe(
-      startWith(''))
-      .subscribe(value => {
-        console.log(value);
-        this.competitionList.pipe(
-          tap(resp => console.log(resp)),
-          map(array => array.filter(resp => resp.name.includes(value))),
-        );
-      });
-
-
    this.updateScoresSubscription$ = timer(0, 60000)
       .pipe(
         switchMap(() => this.liveScoresService.updateScores())
@@ -134,7 +122,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   removeFilter(filter, type: string) {
     this.homeService.removeFilter(filter.name, type);
     this.liveScores = this.liveScores.pipe(
-      map(liveScores => this.homeService.filterStatus(liveScores))
+      map(liveScores => type === 'status' ? this.homeService.filterStatus(liveScores)
+         : this.homeService.filterCompetitions(liveScores))
     );
   }
 }

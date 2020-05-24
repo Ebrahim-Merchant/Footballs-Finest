@@ -78,6 +78,9 @@ export class HomeService {
   }
 
   filterCompetitions(liveScores: IScoreItem[]) {
+    if (!liveScores || !this.competitionSelectedList || !(this.competitionSelectedList.length > 0)) {
+      return liveScores;
+    }
     return liveScores.filter(liveScoreItem =>
       this.competitionSelectedList.some(competition =>
         liveScoreItem.league.id === competition.value

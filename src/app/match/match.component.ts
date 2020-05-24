@@ -33,7 +33,6 @@ export class MatchComponent implements OnInit {
       switchMap(([params, queryParamMap]) => {
         const team1 = this.parseParam(params.get("team1"));
         const team2 = this.parseParam(params.get("team2"));
-        console.log(queryParamMap);
         this.status = queryParamMap.get("status");
         if (this.status === 'Live') {
           return this.updateLiveScores(team1, team2);
@@ -53,17 +52,14 @@ export class MatchComponent implements OnInit {
   }
 
   getLiveScore(teamOne: string, teamTwo: string) {
-    return this.liveScores.getMatchLocation(teamOne, teamTwo).pipe(
-      tap(info => console.log(info))
-    );
+    return this.liveScores.getMatchLocation(teamOne, teamTwo);
   }
 
   updateLiveScores(teamOne: string, teamTwo: string) {
   return timer(0, 60000)
     .pipe(
       tap(() => this.isLoaded = true),
-      switchMap(() => this.liveScores.getMatchLocation(teamOne, teamTwo)),
-      tap(info => console.log(info))
+      switchMap(() => this.liveScores.getMatchLocation(teamOne, teamTwo))
     );
   }
 }

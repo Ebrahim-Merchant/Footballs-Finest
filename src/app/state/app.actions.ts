@@ -19,7 +19,6 @@ export const AppActionTypes = {
 export class AppActions {
 
   getScores() {
-    console.log(AppActionTypes.GET_SCORES);
     return {
       type: AppActionTypes.GET_SCORES
     };
