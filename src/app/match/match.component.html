@@ -1,0 +1,31 @@
+<div class="match-container"
+*ngIf="matchInfo | async as matchData" [ngStyle]="{'transition:none': isLoaded}">
+  <app-score-card [scoreItem]="matchData.score" [fullWidth]="true">
+  </app-score-card>
+  <mat-tab-group
+    style="box-shadow: none;"
+    mat-stretch-tabs
+    class="mat-elevation-z4">
+    <mat-tab label="Line-Ups">
+      <app-line-ups
+        *ngIf="matchData?.sides"
+        [sides]="matchData?.sides">
+      </app-line-ups>
+    </mat-tab>
+    <mat-tab label="Events">
+      <app-events [events]="matchData?.events"></app-events>
+    </mat-tab>
+    <mat-tab label="Stats">
+      <mat-list role="list" *ngIf="matchData?.stats.length > 0; else noStats">
+        <mat-list-item class="stats" *ngFor="let stat of matchData.stats">
+          <div>{{ stat.sideOneStat }}</div>
+          <div class="heading">{{ STATS_KEY[stat.statKey] }}</div>
+          <div>{{ stat.sideTwoStat }}</div>
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noStats>
+          <mat-list style="text-align: center; padding: 1rem;">There are no stat's available yet</mat-list>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

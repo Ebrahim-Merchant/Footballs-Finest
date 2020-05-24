@@ -1,0 +1,35 @@
+<mat-list  *ngIf="events.length > 0; else noEvents">
+    <mat-list-item
+    [class.side-one-event] = "event.side === 1"
+    [class.side-two-event] = "event.side === 2"
+      *ngFor="let event of events">
+      <div 
+        class="player-container"
+        [class.flex-end] = "event.side === 2">
+        <ng-container [ngSwitch]="event.type">
+          <img
+            class="event-image"
+            *ngSwitchCase="EVENT_TYPES.YELLOW_CARD"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Yellow_card.svg"
+          />
+          <img
+          class="event-image"
+          *ngSwitchCase="EVENT_TYPES.GOAL || EVENT_TYPES.OWN_GOAL"
+            src="https://upload.wikimedia.org/wikipedia/commons/9/98/Goal.svg"
+          />
+          <img
+          class="event-image"
+          *ngSwitchCase="EVENT_TYPES.RED_CARD"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Red_card.svg"
+          />
+        </ng-container>
+        <div>{{ event.playerName }}</div>
+      </div>
+
+      <div class="time-container">{{ event.minute }}'</div>
+      <div style="flex: 1"></div>
+    </mat-list-item>
+</mat-list>
+<ng-template #noEvents>
+  <mat-list class="no-events-text" >There are events yet</mat-list>
+</ng-template>

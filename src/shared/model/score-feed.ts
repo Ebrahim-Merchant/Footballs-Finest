@@ -1,3 +1,6 @@
+import { ScoreItem } from './impl/score-item';
+import { SideItem } from './impl/side-item';
+
 export interface IScoreItem {
   teamOne: ITeam;
   teamTwo: ITeam;
@@ -6,24 +9,63 @@ export interface IScoreItem {
   matchId: number;
 }
 
-interface IGeneral {
+export interface IGeneral {
   name: string;
   logo: string;
 }
 
-interface ITeam extends IGeneral {
+export interface ITeam extends IGeneral {
   id: number;
   score: number;
-};
+}
 
-interface ILeague extends IGeneral {
+export interface ILeague extends IGeneral {
   id: number;
-};
+}
 
-
-interface IMatchStatus {
+export interface IMatchStatus {
   status: string;
   statusInfo: string;
   whistleTime: number;
   time?: number;
-};
+}
+
+export interface IMatchData extends IScoreItem {
+  sides: ISideItem[];
+  events: IEvent;
+  stats: any;
+}
+
+export interface IEvent {
+  name: string;
+  type: string;
+  minute: string;
+  playerId: number;
+  side: number;
+}
+
+export interface ISideItem {
+  name: string;
+  formation: string;
+  lineup: ILineUpItem[];
+  bench: ILineUpItem[];
+}
+
+export interface ILineUpItem {
+  name: string;
+  positionNumber: string;
+  position: string;
+}
+
+export interface APIResponse<T> {
+  error: [];
+  currentTime: number;
+  response: T;
+}
+
+export interface IMatchInfo {
+  score: ScoreItem;
+  sides: SideItem[];
+  events: IEvent[];
+  stats: any;
+}

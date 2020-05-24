@@ -1,0 +1,18 @@
+:host {
+  .match-container {
+    margin-top: 2rem;
+    background: white;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heading {
+    text-transform: capitalize;
+  }
+
+  .stats {
+    ::ng-deep .mat-list-item-content {
+      justify-content: space-between;
+    }
+  }
+}

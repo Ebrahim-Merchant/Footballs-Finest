@@ -1,0 +1,18 @@
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab
+    *ngFor="let side of sides"
+    [label]="side.name"
+    class="line-up-tab">
+    <app-line-up-list
+      *ngIf="side?.lineup?.length > 0; else noLineups"
+      [heading]="'Formation: ' + side.formation" [players]="side.lineup">
+    </app-line-up-list>
+    <app-line-up-list
+    *ngIf="side?.bench?.length > 0"
+    [heading]="'Substitutes'" [players]="side.bench">
+    </app-line-up-list>
+    <ng-template #noLineups>
+        <mat-list class="no-data-text">There are no lineup's available yet</mat-list>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
