@@ -5,10 +5,9 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    height: 225px;
-    max-height: 225px;
+    border-radius: 1rem;
+
     &.width {
-      min-width: 325px;
       margin: 0.5rem;
     }
     &.full-width {
@@ -49,7 +48,7 @@
   }
 
   .time {
-    color: rgba(206, 2, 2, 0.836);
+    // color: rgba(206, 2, 2, 0.836);
     animation: blinker 2s linear infinite;
   }
 
@@ -68,5 +67,10 @@
       max-width: none !important;
       width: auto;
     }
+  }
+
+  .bottom {
+    padding: 0.25rem;
+    font-weight: 200;
   }
 }

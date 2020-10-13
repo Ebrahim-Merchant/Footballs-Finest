@@ -15,19 +15,23 @@ export class ScoreItem implements IScoreItem {
     if (competition) {
       this.league = {
         id: feedItem.c,
-        name: competition[feedItem.c].n,
+        name: UtilsService.getLeagueName(competition[feedItem.c].n),
         logo: competition[feedItem.c].fl
       };
     } else if (feedItem.cn) {
       this.league = {
         id: feedItem.c,
-        name: feedItem.cn,
-        logo: feedItem.fl
+        name: UtilsService.getLeagueName(feedItem.cn),
+        logo: feedItem.fl,
       };
     }
 
     this.matchId = feedItem.id;
-    this.status = UtilsService.getStatus(feedItem.s, feedItem.wh ? feedItem.wh : feedItem.dt);
+    const status = UtilsService.getStatus(feedItem.s, feedItem.wh ? feedItem.wh : feedItem.dt);
+    this.status = {
+      ...status,
+      scheduledTime: UtilsService.getScheduledTime(status.whistleTime)
+    }
   }
 
 }

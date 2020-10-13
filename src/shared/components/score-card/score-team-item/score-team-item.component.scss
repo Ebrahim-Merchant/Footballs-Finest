@@ -1,0 +1,14 @@
+:host {
+  .score-item {
+    display: flex;
+    align-items: center;
+    .logo {
+      width: 32px;
+      height: 32px;
+      padding-right: 1rem;
+    }
+    .score {
+      margin-left: auto;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <div class="match-container"
-*ngIf="matchInfo | async as matchData" [ngStyle]="{'transition:none': isLoaded}">
+  *ngIf="matchInfo | async as matchData" [ngStyle]="{'transition:none': isLoaded}">
   <app-score-card [scoreItem]="matchData.score" [fullWidth]="true">
   </app-score-card>
   <mat-tab-group
@@ -19,7 +19,7 @@
       <mat-list role="list" *ngIf="matchData?.stats.length > 0; else noStats">
         <mat-list-item class="stats" *ngFor="let stat of matchData.stats">
           <div>{{ stat.sideOneStat }}</div>
-          <div class="heading">{{ STATS_KEY[stat.statKey] }}</div>
+          <div class="heading">{{ STATS_KEY[stat.statKey] ? STATS_KEY[stat.statKey] : replaceCamel(stat.statKey)}}</div>
           <div>{{ stat.sideTwoStat }}</div>
         </mat-list-item>
       </mat-list>

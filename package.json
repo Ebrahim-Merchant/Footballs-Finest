@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-pages": "ng build --base-href 'https://ebrahim-merchant.github.io/FootballsFinest/' --prod && npx ngh --dir=dist/footballs-finest"
+    "gh-pages": "ng build --base-href 'https://ebrahim-merchant.github.io/Footballs-Finest/' --prod && npx ngh --dir=dist/footballs-finest"
   },
   "private": true,
   "dependencies": {

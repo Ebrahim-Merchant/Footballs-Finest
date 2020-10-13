@@ -3,22 +3,25 @@
     [class.side-one-event] = "event.side === 1"
     [class.side-two-event] = "event.side === 2"
       *ngFor="let event of events">
-      <div 
+      <div
         class="player-container"
         [class.flex-end] = "event.side === 2">
         <ng-container [ngSwitch]="event.type">
           <img
             class="event-image"
+            alt=""
             *ngSwitchCase="EVENT_TYPES.YELLOW_CARD"
             src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Yellow_card.svg"
           />
           <img
           class="event-image"
+          alt=""
           *ngSwitchCase="EVENT_TYPES.GOAL || EVENT_TYPES.OWN_GOAL"
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/Goal.svg"
           />
           <img
           class="event-image"
+          alt=""
           *ngSwitchCase="EVENT_TYPES.RED_CARD"
             src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Red_card.svg"
           />

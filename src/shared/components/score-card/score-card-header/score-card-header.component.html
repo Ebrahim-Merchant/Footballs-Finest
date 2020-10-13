@@ -1,0 +1,13 @@
+<mat-card-title class="truncate flex">
+  <div class="title">
+    {{ league }}
+  </div>
+  <div [ngSwitch]="status?.statusInfo" class="chip">
+    <div *ngSwitchCase="'Live'" class="live"><span class="blink"></span>Live</div>
+    <div *ngSwitchCase="'Scheduled'" class="scheduled">{{status?.scheduledTime}}</div>
+    <div *ngSwitchCase="'Ended'" class="done">Final</div>
+    <div *ngSwitchCase="'Cancelled'" class="postponed">Postponed</div>
+    <div *ngSwitchDefault></div>
+  </div>
+
+</mat-card-title>

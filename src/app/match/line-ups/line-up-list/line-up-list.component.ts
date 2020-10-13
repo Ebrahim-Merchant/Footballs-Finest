@@ -5,7 +5,7 @@ import { ILineUpItem } from 'src/shared/model/score-feed';
 @Component({
   selector: 'app-line-up-list',
   templateUrl: './line-up-list.component.html',
-  styleUrls: ['./line-up-list.component.css']
+  styleUrls: ['./line-up-list.component.scss']
 })
 export class LineUpListComponent implements OnInit {
 
