@@ -15,17 +15,6 @@ export class ScoreCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
-  getLeagueName(leagueName: string) {
-    const indexOf = leagueName.indexOf(':');
-    if (indexOf > 0) {
-      return leagueName.substring(indexOf + 1);
-    }
-  }
-
-  getScheduledTime(unixTime: number) {
-    return moment.unix(unixTime).format('hh:mm');
-  }
 }

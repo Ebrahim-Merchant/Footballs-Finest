@@ -1,4 +1,3 @@
-import { AppActions } from './../../../app/state/app.actions';
 import { Store } from '@ngrx/store';
 import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -15,7 +14,6 @@ import { getGamesState } from 'src/app/state/app.selectors';
 export class LiveScoresService {
   constructor(
     private http: HttpClient,
-    private appActions: AppActions,
     private store: Store) {}
 
   competitions: EventEmitter<any> = new EventEmitter();
@@ -84,7 +82,7 @@ export class LiveScoresService {
         );
       }
     });
-    this.store.dispatch(this.appActions.updateScoresFulfilled(feed));
+    return feed;
   }
 
   getMatchLocation(teamOne: string, teamTwo: string) {

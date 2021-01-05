@@ -1,0 +1,66 @@
+
+@media only screen and (max-width: 500px) {
+  :host {
+    .title {
+      max-width: 10rem !important;
+    }
+}
+}
+
+
+@media only screen and (max-width: 750px) {
+  :host {
+    .title {
+      max-width: 12rem !important;
+    }
+}
+}
+
+
+:host {
+  .flex {
+    display: flex;
+    .title {
+      max-width: 20rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chip {
+      margin-left: auto;
+      .scheduled {
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 0.25rem;
+        color: white;
+        text-transform: uppercase;
+        background: gray;
+      }
+      .live {
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 0.25rem 0.5rem;
+        background: #d54b4b;
+        text-transform: uppercase;
+        color: white;
+      }
+      .done {
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 0.25rem;
+        background: #45ce84;
+        text-transform: uppercase;
+        color: white;
+      }
+      .postponed {
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 0.25rem;
+        background: gray;
+        text-transform: uppercase;
+        color: white;
+      }
+    }
+  }
+}
+

@@ -6,14 +6,13 @@
         *ngFor="let competition of homeService.competitionSelectedList"
         [selectable]="competition.selected"
         [removable]="true"
-        (removed)="removeFilter(competition, 'competition')"
-      >
+        (removed)="removeFilter(competition, 'competition')">
         {{ competition.name }}
         <mat-icon matChipRemove *ngIf="competition.removable">cancel</mat-icon>
       </mat-chip>
       <input
         placeholder="Select a league"
-        #fruitInput
+        #leagueForm
         [formControl]="leagueInput"
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
@@ -22,7 +21,7 @@
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
-        *ngFor="let competition of competitionList | async"
+        *ngFor="let competition of competitionList$ | async"
         [value]="competition.name"
         (click)="competitionFiltersClicked(competition)"
       >
@@ -57,7 +56,7 @@
     *ngIf="liveScores | async as scoreItem"
   >
     <app-score-card
-      *ngFor="let liveScore of scoreItem | slice: 0:sliceNumber"
+      *ngFor="let liveScore of scoreItem | slice: 0:sliceNumber; trackBy: trackBy"
       (click)="route(liveScore)"
       [scoreItem]="liveScore"
     >

@@ -1,13 +1,10 @@
 import { IMatchInfo } from './../../shared/model/score-feed';
 import { STATS_KEY, EVENT_TYPES } from './../app.constants';
-import { switchMap, take, withLatestFrom, tap, takeUntil } from "rxjs/operators";
+import { switchMap, withLatestFrom, tap } from "rxjs/operators";
 import { LiveScoresService } from "./../../shared/services/live-scores/live-scores.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, interval, Subscription, timer } from "rxjs";
-import { ISideItem } from "src/shared/model/score-feed";
-import { Store } from '@ngrx/store';
-import { getMatch } from '../state/app.selectors';
+import { Observable, timer } from "rxjs";
 
 @Component({
   selector: "app-match",
@@ -15,15 +12,53 @@ import { getMatch } from '../state/app.selectors';
   styleUrls: ["./match.component.scss"]
 })
 export class MatchComponent implements OnInit {
-  matchInfo: Observable<any>;
+
+  /**
+   *
+   *
+   * @type {Observable<IMatchInfo>}
+   * @memberof MatchComponent
+   */
+  matchInfo: Observable<IMatchInfo>;
+
+  /**
+   *
+   *
+   * @memberof MatchComponent
+   */
   readonly STATS_KEY = STATS_KEY;
+
+  /**
+   *
+   *
+   * @memberof MatchComponent
+   */
   readonly EVENT_TYPES = EVENT_TYPES;
+
+  /**
+   *
+   *
+   * @private
+   * @type {string}
+   * @memberof MatchComponent
+   */
   private status: string;
+
+  /**
+   *
+   *
+   * @memberof MatchComponent
+   */
   isLoaded = false;
 
+  /**
+   * Creates an instance of MatchComponent.
+   * @param {ActivatedRoute} route
+   * @param {LiveScoresService} liveScores
+   * @memberof MatchComponent
+   */
   constructor(
     private route: ActivatedRoute,
-    private store: Store,
     private liveScores: LiveScoresService
   ) {}
 
@@ -31,13 +66,13 @@ export class MatchComponent implements OnInit {
     this.matchInfo = this.route.paramMap.pipe(
       withLatestFrom(this.route.queryParamMap),
       switchMap(([params, queryParamMap]) => {
-        const team1 = this.parseParam(params.get("team1"));
-        const team2 = this.parseParam(params.get("team2"));
+        const teamOne = this.parseParam(params.get("team1"));
+        const teamTwo = this.parseParam(params.get("team2"));
         this.status = queryParamMap.get("status");
         if (this.status === 'Live') {
-          return this.updateLiveScores(team1, team2);
+          return this.updateLiveScores(teamOne, teamTwo);
         } else {
-          return this.getLiveScore(team1, team2);
+          return this.getLiveScore(teamOne, teamTwo);
         }
       })
     );
@@ -55,11 +90,17 @@ export class MatchComponent implements OnInit {
     return this.liveScores.getMatchLocation(teamOne, teamTwo);
   }
 
+  replaceCamel(stat: string) {
+    return stat.replace(/([a-z](?=[A-Z]))/g, '$1 ');
+  }
+
   updateLiveScores(teamOne: string, teamTwo: string) {
   return timer(0, 60000)
     .pipe(
       tap(() => this.isLoaded = true),
-      switchMap(() => this.liveScores.getMatchLocation(teamOne, teamTwo))
+      switchMap(() => this.liveScores.getMatchLocation(teamOne, teamTwo)),
+      tap((data) => console.log(data)
+      )
     );
   }
 }

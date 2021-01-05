@@ -28,6 +28,7 @@ export interface IMatchStatus {
   statusInfo: string;
   whistleTime: number;
   time?: number;
+  scheduledTime?: string;
 }
 
 export interface IMatchData extends IScoreItem {

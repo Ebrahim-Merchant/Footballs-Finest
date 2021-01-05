@@ -1,36 +1,17 @@
-<mat-card class="card" [ngClass]="{width: !fullWidth,'full-width': fullWidth}" *ngIf="scoreItem" [hidden]="scoreItem.status.statusInfo === 'Live'">
-  <mat-card-title class="truncate">{{getLeagueName(scoreItem.league.name)}}</mat-card-title>
-  <div class="flex-card">
-    <div style="flex: 1">
-      <img src="{{ scoreItem.teamOne.logo }}" />
-      <p>{{ scoreItem.teamOne.name }}</p>
-    </div>
-    <div style="flex: 2">
-      <h1 *ngIf="scoreItem.status.statusInfo !== 'Scheduled'">
-        {{ scoreItem.teamOne.score + " - " + scoreItem.teamTwo.score }}
-      </h1>
-      <h1 *ngIf="scoreItem.status.statusInfo === 'Scheduled'">
-        {{ getScheduledTime(scoreItem.status.whistleTime) }}
-      </h1>
-      <div [ngSwitch]="scoreItem.status.statusInfo">
-        <div *ngSwitchCase="'Live'">
-          <p class="half-time" *ngIf="scoreItem.status.status === 'HT'; else time">
-            Half Time
-          </p>
-          <ng-template #time>
-            <h4 class="time">
-              {{ scoreItem.status.time }}
-            </h4>
-          </ng-template>
-        </div>
-        <div *ngSwitchCase="'Ended'">Full Time</div>
-        <div *ngSwitchCase="'Cancelled'">Postponed</div>
-        <div *ngSwitchDefault></div>
-      </div>
-    </div>
-    <div style="flex: 1">
-      <img src="{{ scoreItem.teamTwo.logo }}" />
-      <p>{{ scoreItem.teamTwo.name }}</p>
-    </div>
+<mat-card
+  class="card"
+  [ngClass]="{ width: !fullWidth, 'full-width': fullWidth }"
+  *ngIf="scoreItem"
+  [hidden]="scoreItem.status.statusInfo === 'Live'">
+  <app-score-card-header
+    [league]="scoreItem?.league?.name"
+    [status]="scoreItem?.status">
+</app-score-card-header>
+
+  <app-score-team-item [team]="scoreItem?.teamOne"></app-score-team-item>
+  <app-score-team-item [team]="scoreItem?.teamTwo"></app-score-team-item>
+
+  <div class="bottom" [class.time]="scoreItem?.status.statusInfo === 'Live'">
+    {{ scoreItem?.status.statusInfo === 'Live' ? scoreItem?.status?.time + "'" : scoreItem?.status.statusInfo }}
   </div>
 </mat-card>
