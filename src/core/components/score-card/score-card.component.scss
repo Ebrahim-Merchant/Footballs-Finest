@@ -1,0 +1,76 @@
+:host {
+  flex: 1;
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1rem;
+
+    &.width {
+      margin: 0.5rem;
+    }
+    &.full-width {
+      box-shadow: none;
+      border-radius: 0px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;
+    }
+  }
+
+  .flex-card {
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .md-chip {
+    display: inline-block;
+    background: grey;
+    padding: 0 12px;
+    border-radius: 32px;
+    font-size: 13px;
+
+    &.md-chip-hover:hover {
+      background: #ccc;
+    }
+  }
+
+  .half-time {
+    color: rgb(238, 147, 11);
+  }
+
+  .time {
+    // color: rgba(206, 2, 2, 0.836);
+    animation: blinker 2s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  :host {
+    flex: none;
+    width: 100%;
+    .card.width {
+      max-width: none !important;
+      width: auto;
+    }
+  }
+
+  .bottom {
+    padding: 0.25rem;
+    font-weight: 200;
+  }
+}
