@@ -1,7 +1,7 @@
-import { IMatchInfo } from './../../shared/model/score-feed';
+import { IMatchInfo } from '../../core/model/score-feed';
 import { STATS_KEY, EVENT_TYPES } from './../app.constants';
 import { switchMap, withLatestFrom, tap } from "rxjs/operators";
-import { LiveScoresService } from "./../../shared/services/live-scores/live-scores.service";
+import { LiveScoresService } from "../../core/services/live-scores/live-scores.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, timer } from "rxjs";

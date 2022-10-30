@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IScoreItem } from 'src/shared/model/score-feed';
+import { IScoreItem } from 'src/core/model/score-feed';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export interface IFilterItem {

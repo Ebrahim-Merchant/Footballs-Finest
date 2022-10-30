@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SideItem } from 'src/shared/model/impl/side-item';
-import { ILineUpItem } from 'src/shared/model/score-feed';
+import { SideItem } from 'src/core/model/impl/side-item';
+import { ILineUpItem } from 'src/core/model/score-feed';
 
 @Component({
   selector: 'app-line-up-list',

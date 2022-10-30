@@ -1,5 +1,5 @@
 import { switchMap, switchMapTo } from 'rxjs/operators';
-import { LiveScoresService } from './../../shared/services/live-scores/live-scores.service';
+import { LiveScoresService } from '../../core/services/live-scores/live-scores.service';
 import { AppActionTypes, AppActions } from './app.actions';
 import { Actions, ofType, Effect } from "@ngrx/effects";
 import { Injectable } from "@angular/core";

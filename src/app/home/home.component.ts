@@ -6,10 +6,10 @@ import {
   HostListener,
   ViewChild
 } from "@angular/core";
-import { LiveScoresService } from "src/shared/services/live-scores/live-scores.service";
+import { LiveScoresService } from "src/core/services/live-scores/live-scores.service";
 import { switchMap, map, mergeMap } from "rxjs/operators";
 import { Observable, timer } from "rxjs";
-import { IScoreItem } from "src/shared/model/score-feed";
+import { IScoreItem } from "src/core/model/score-feed";
 import { Router } from "@angular/router";
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl } from '@angular/forms';
@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.liveScores = timer(0, 60000)
+    this.liveScores = timer(0, 30000)
       .pipe(
         switchMap(() => this.liveScoresService.updateScores())
       )
@@ -132,7 +132,7 @@ export class HomeComponent implements OnInit {
     return this.competitionList;
   }
 
-  trackBy(index: number, name: IScoreItem): number {
+  trackBy(_index: number, name: IScoreItem): number {
     return name.matchId;
   }
 }

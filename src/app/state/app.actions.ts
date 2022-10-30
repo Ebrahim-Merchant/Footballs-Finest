@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IScoreItem } from 'src/shared/model/score-feed';
+import { IScoreItem } from 'src/core/model/score-feed';
 
 export interface AppAction extends Action {
   games: Array<IScoreItem>;

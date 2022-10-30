@@ -1,7 +1,7 @@
 import { AppActions } from './state/app.actions';
 import { AppEffects } from './state/app.effects';
 import { LineUpsComponent } from "./match/line-ups/line-ups.component";
-import { ScoreCardModule } from "./../shared/components/score-card/score-card.module";
+import { ScoreCardModule } from "../core/components/score-card/score-card.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
